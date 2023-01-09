@@ -1,13 +1,120 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.5-b/css/style.min.css"
+        />
+        <link rel="stylesheet" href="./css/main.css" />
+    </head>
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
-</body>
+    <body class="page" style="margin: 1rem">
+        <section class="columns is-centered is-flex column">
+            <div class="v-collapsible-instruction-container">
+                <div class="v-collapsible">Instructions</div>
+                <div id="procedure-message" class="v-content">
+                    <li class="instr-font">
+                        The arrows to the sides of the name of the lattice should be used for
+                        navigating between different lattices
+                    </li>
+                    <li class="instr-font">
+                        Left click and drag to move the camera around. You can use the mouse scroll
+                        wheel to zoom in or zoom out.
+                    </li>
+                    <li class="instr-font">
+                        To select atoms, click on the select atoms button. It is to be noted that
+                        the select atoms button is a toggle switch. Once you have made your choice,
+                        click on the check vectors button to get the result of your choice.
+                    </li>
+                    <li class="instr-font">
+                        Please select the set of atoms(in any order), all of which are a part of a
+                        unique primitive or non primitive lattice.
+                    </li>
+                </div>
+            </div>
+        </section>
+
+        <main
+            class="columns is-centered is-variable is-1-mobile is-flex is-flex-wrap-wrap workspace"
+        >
+            <aside id="left" class="column is-2-desktop is-5-tablet is-5-mobile apparatus">
+                <div class="v-datalist-container">
+                    <div class="v-datalist-row">
+                        <div class="v-datalist-title" id="disp-heading">Navigate Lattices</div>
+                        <!-- <button
+                            id="prev-btn"
+                            style="margin: 0.25rem"
+                            class="v-button is-small is-responsive is-info"
+                        >
+                            <
+                        </button> -->
+                        <!-- <label id="current-lattice"> Square Lattice </label> -->
+
+                        <select id="LatticeList">
+                            <option value="Rectangular Lattice">Simple Cubic</option>
+                            <option value="Face Centered Cubic">Face Centered Cubic</option>
+                            <option value="Body Centered Cubic">Body Centered Cubic</option>
+                            <option value="Hexagonal Packing">Hexagonal Packing</option>
+                        </select>
+                        <!-- <button
+                            id="next-btn"
+                            style="margin: 0.25rem"
+                            class="v-button is-small is-responsive is-danger"
+                        >
+                            >
+                        </button> -->
+                    </div>
+
+                    <div class="v-datalist-row" id="top-border">
+                        <div class="v-datalist-title" id="disp-heading">
+                            Select the Lattice atoms
+                        </div>
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="SelectAtom"
+                            type="submit"
+                            value="SELECT ATOMS"
+                        />
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="SelectRegion"
+                            type="submit"
+                            value="SELECT REGION"
+                        />
+                    </div>
+                    <div class="v-datalist-row" id="top-border">
+                        <div class="v-datalist-title" id="disp-heading">Check Selected Lattice</div>
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="CheckLattice"
+                            type="submit"
+                            value="CHECK LATTICE"
+                        />
+                        <br />
+                        <label class="v-datalist-title" id="lattice-result"></label>
+                    </div>
+                </div>
+            </aside>
+
+            <aside class="column is-8-desktop is-10-tablet is-10-mobile exp">
+                <div class="v-canvas-container" id="canvas-main"></div>
+            </aside>
+        </main>
+        <script type="module" src="js/three.js"></script>
+        <script type="module" src="js/orbit.js"></script>
+        <script type="module" src="js/main.js"></script>
+        <script type="module" src="js/convex.js"></script>
+        <script type="module" src="js/hull.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    </body>
 </html>
