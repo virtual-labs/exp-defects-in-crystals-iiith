@@ -20,21 +20,23 @@
                 <div class="v-collapsible">Instructions</div>
                 <div id="procedure-message" class="v-content">
                     <li class="instr-font">
-                        The arrows to the sides of the name of the lattice should be used for
-                        navigating between different lattices
+                        The experiment aims to visualize and verify the reciprocal lattice for a
+                        given lattice
                     </li>
                     <li class="instr-font">
-                        Left click and drag to move the camera around. You can use the mouse scroll
-                        wheel to zoom in or zoom out.
+                        'Select Atoms' button can be used to select the atoms that represent the
+                        reciprocal lattice for the given lattice
                     </li>
                     <li class="instr-font">
-                        To select atoms, click on the select atoms button. It is to be noted that
-                        the select atoms button is a toggle switch. Once you have made your choice,
-                        click on the check vectors button to get the result of your choice.
+                        'select Region' button can be used to visualize the convex polygon which
+                        encapsulates the selected atoms.
                     </li>
                     <li class="instr-font">
-                        Please select the set of atoms(in any order), all of which are a part of a
-                        unique primitive or non primitive lattice.
+                        'Check reciprocal lattice ' button can be used to verify if the chosen
+                        points form the reciprocal lattice or not.
+                    </li>
+                    <li class="instr-font">
+                        The results will be displayed in the observations section on the right.
                     </li>
                 </div>
             </div>
@@ -80,14 +82,14 @@
                             style="margin: 0.5rem"
                             id="SelectAtom"
                             type="submit"
-                            value="SELECT ATOMS"
+                            value="Select Atoms"
                         />
                         <input
                             class="button is-responsive is-small is-link"
                             style="margin: 0.5rem"
                             id="SelectRegion"
                             type="submit"
-                            value="SELECT REGION"
+                            value="Select Region"
                         />
                     </div>
                     <div class="v-datalist-row" id="top-border">
@@ -97,7 +99,7 @@
                             style="margin: 0.5rem"
                             id="CheckLattice"
                             type="submit"
-                            value="CHECK LATTICE"
+                            value="Check Reciprocal Lattice"
                         />
                         <br />
                     </div>
