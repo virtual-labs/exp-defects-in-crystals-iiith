@@ -319,7 +319,7 @@ export function createLattice(latticeID) {
   let atomlist = []
   if (latticeID == 0) {
     console.log('simple cubic')
-    let latticedims = [20, 20, 20]
+    let latticedims = [10, 10, 10]
     for (let x = 0; x < latticedims[0]; x += 2) {
       for (let y = 0; y < latticedims[1]; y += 2) {
         for (let z = 0; z < latticedims[2]; z += 2) {
@@ -331,7 +331,7 @@ export function createLattice(latticeID) {
     }
   } else if (latticeID == 1) {
     console.log('adding face centered cubic')
-    let latticedims = [20, 20, 20]
+    let latticedims = [10, 10, 10]
     for (let x = 0; x < latticedims[0]; x += 3) {
       for (let y = 0; y < latticedims[1]; y += 3) {
         for (let z = 0; z < latticedims[2]; z += 3) {
@@ -370,7 +370,7 @@ export function createLattice(latticeID) {
     }
   } else if (latticeID == 2) {
     console.log('adding body centered cubic')
-    let latticedims = [20, 20, 20]
+    let latticedims = [10, 10, 10]
     for (let x = 0; x < latticedims[0]; x += 4) {
       for (let y = 0; y < latticedims[1]; y += 4) {
         for (let z = 0; z < latticedims[2]; z += 4) {
@@ -391,7 +391,7 @@ export function createLattice(latticeID) {
     }
   } else if (latticeID == 3) {
     console.log('adding HCP')
-    let latticedims = [20, 20, 20]
+    let latticedims = [10, 10, 10]
     let height = 0
     for (let z = 0; z < latticedims[2]; z += 1.732) {
       if (height % 2 == 0) {
@@ -450,7 +450,7 @@ export function latticeChecker(latticeID, CurrentHull) {
   var Areas = []
   for (let i = 0; i < Faces.length; i++) {
     Areas.push(Faces[i].area)
-  }  
+  }
   if (latticeID == 0) {
     for (let i = 0; i < Areas.length - 1; i++) {
       for (let j = i + 1; j < Areas.length; j++) {
@@ -504,7 +504,7 @@ export function latticeChecker(latticeID, CurrentHull) {
     // do something
   }
   if (latticeID == 3) {
-    console.log("WIP")
+    console.log('WIP')
     return 0
   }
 }

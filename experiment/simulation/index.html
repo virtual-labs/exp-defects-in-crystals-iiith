@@ -100,13 +100,19 @@
                             value="CHECK LATTICE"
                         />
                         <br />
-                        <label class="v-datalist-title" id="lattice-result"></label>
                     </div>
                 </div>
             </aside>
 
-            <aside class="column is-8-desktop is-10-tablet is-10-mobile exp">
+            <aside id="center" class="column is-6-desktop is-8-tablet is-8-mobile apparatus">
                 <div class="v-canvas-container" id="canvas-main"></div>
+            </aside>
+            <aside id="right" class="column is-2-desktop is-5-tablet is-5-mobile apparatus">
+                <div class="v-datalist-container">
+                    <div class="v-datalist-title">Observations</div>
+                    <div class="v-datalist-row" id="top-border"></div>
+                    <label class="v-datalist-title" id="lattice-result"></label>
+                </div>
             </aside>
         </main>
         <script type="module" src="js/three.js"></script>
