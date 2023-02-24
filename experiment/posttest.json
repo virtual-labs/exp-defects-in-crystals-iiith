@@ -38,7 +38,7 @@
         "d": "None of the above"
       },
       "explanations": {
-        "a": "Both the set of vectors being from the same lattice does not justify the cause"
+        "a": "Both the set of vectors being from the same lattice does not justify the cause",
         "b": "This is true. Fundamentally, reciprocal vectors are also primitive vectors of the same lattice in a different space"
       },
       "correctAnswer": "b",
