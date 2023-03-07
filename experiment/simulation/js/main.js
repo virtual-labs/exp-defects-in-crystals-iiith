@@ -20,36 +20,45 @@ import {
   latticeChecker,
 } from './utils.js'
 
+// init container
 var container = document.getElementById('canvas-main')
-//  init camera
-var camera = new THREE.PerspectiveCamera(
-  75, //FOV
-  container.clientWidth / container.clientHeight, //aspect ratio
-  0.1,
-  1000,
-)
-// var camera = new THREE.OrthographicCamera(
-//   100 / -2,
-//   100 / 2,
-//   100 / 2,
-//   100 / -2,
-//   1,
-//   100,
-// )
-camera.position.set(30, 30, 30)
 
 // init the renderer and the scene
-
 var scene = new THREE.Scene()
 var renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.setClearColor('#000000')
 renderer.setSize(container.clientWidth, container.clientHeight)
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
-// document.body.appendChild(renderer.domElement);
 container.appendChild(renderer.domElement)
 
-// console.log(window);
+// init perspective camera
+var camera_distance = 25
+var perspective_camera = new THREE.PerspectiveCamera(
+  camera_distance, //FOV
+  container.clientWidth / container.clientHeight, //aspect ratio
+  0.1,
+  1000,
+)
+var orthographic_camera = new THREE.OrthographicCamera(
+  camera_distance / -2,
+  camera_distance / 2,
+  camera_distance / 2,
+  camera_distance / -2,
+  1,
+  1000,
+)
+var camera = perspective_camera
+
+// init the orbit controls
+var controls = new OrbitControls(camera, renderer.domElement)
+controls.update()
+controls.autoRotate = true
+controls.autoRotateSpeed = 0
+controls.enablePan = false
+controls.enableDamping = true
+camera.position.set(25, 25, 25)
+
 // initialize the axes
 var axesHelper = new THREE.AxesHelper(container.clientHeight)
 scene.add(axesHelper)
@@ -59,13 +68,24 @@ const lights = AddLight()
 for (let i = 0; i < lights.length; i++) {
   scene.add(lights[i])
 }
-// init the orbit controls
-var controls = new OrbitControls(camera, renderer.domElement)
-controls.update()
-controls.autoRotate = true
-controls.autoRotateSpeed = 0
-controls.enablePan = false
-controls.enableDamping = true
+
+let Checked = document.getElementById('ToggleCamera')
+Checked.addEventListener('click', function () {
+  console.log('Clicked camera toggle')
+  if (Checked.checked) {
+    camera = orthographic_camera
+    controls = new OrbitControls(camera, renderer.domElement)
+  } else {
+    camera = perspective_camera
+    controls = new OrbitControls(camera, renderer.domElement)
+  }
+  controls.update()
+  controls.autoRotate = true
+  controls.autoRotateSpeed = 0
+  controls.enablePan = false
+  controls.enableDamping = true
+  camera.position.set(25, 25, 25)
+})
 
 // to check the current object which keyboard points to
 let INTERSECTED
@@ -103,13 +123,6 @@ document.addEventListener('mousemove', function (event) {
   mouse = getMouseCoords(event)
 })
 
-document.addEventListener('keydown', function (event) {
-  var keyCode = event.key
-  if (keyCode == 'd') {
-    DeleteObject(mouse, camera, scene, atomList, INTERSECTED)
-  }
-})
-
 let action = ''
 
 // create a list of atoms in scene
@@ -119,56 +132,58 @@ var SelectAtomList = []
 var BoundaryAtomList = []
 var CurrentHull
 var CurrentHullMesh
-var HullMeshList = []
+var HullList = []
 // var currentatom = document.getElementById("atomtype");
 // var atomtype = currentatom.options[currentatom.selectedIndex].text;
 
 // select region enclosed between the atoms
+// select region enclosed between the atoms
 const selectRegion = document.getElementById('SelectRegion')
+
 selectRegion.addEventListener('click', function () {
-  if (action != 'selectRegion') {
-    action = 'selectRegion'
-  } else {
-    action = ''
-    for (let i = 0; i < HullMeshList.length; i++) {
-      scene.remove(HullMeshList[i])
-    }
+  if (SelectAtomList.length < 4) {
+    alert(
+      'Select Region Button expects atleast 4 non planar points to be selected',
+    )
+    return
   }
+  for (let i = 0; i < HullList.length; i++) {
+    scene.remove(HullList[i])
+  }
+
   let vals = select_Region(SelectAtomList, atomList)
   let hullmesh = vals.mesh
   CurrentHullMesh = vals.mesh
   let arr = vals.selectarray
   CurrentHull = vals.convexHull
   for (let i = 0; i < arr.length; i++) {
-    SelectAtomList.push(arr[i])
+    if (!SelectAtomList.includes(arr[i])) {
+      SelectAtomList.push(arr[i])
+    }
   }
-  //   console.log(hullmesh)
-  HullMeshList.push(hullmesh)
+  HullList.push(hullmesh)
   scene.add(hullmesh)
 })
 
-// respond to click addAtom
-// const addSphereButton = document.getElementById("AddAtom");
-// addSphereButton.addEventListener("click", function () {
-//     console.log("adding atom mode");
-//     if (action != "addAtom") {
-//         action = "addAtom";
-//     } else {
-//         action = "";
-//     }
-// });
-
-// respond to select a bunch of atoms
-const addSelectList = document.getElementById('SelectAtom')
-addSelectList.addEventListener('click', function () {
-  //   console.log('Selecting atom mode')
+let toggleselectbutton = document.getElementById('ToggleSelect')
+toggleselectbutton.addEventListener('click', function () {
   if (action != 'selectAtom') {
     action = 'selectAtom'
   } else {
     action = ''
-    SelectAtomList = []
+    // SelectAtomList = []
   }
 })
+const ClearStuff = document.getElementById('ClearSelection')
+ClearStuff.addEventListener('click', function () {
+  SelectAtomList = []
+  for (let i = 0; i < HullList.length; i++) {
+    scene.remove(HullList[i])
+  }
+  HullList = []
+  //add vector removal here
+})
+
 const LatticeList = [
   'Simple Cubic',
   'Face Centered Cubic',
@@ -193,10 +208,10 @@ currentLatticeElement.addEventListener('click', function () {
     scene.remove(currentAtomList[i])
   }
   currentAtomList = []
-  for (let i = 0; i < HullMeshList.length; i++) {
-    scene.remove(HullMeshList[i])
+  for (let i = 0; i < HullList.length; i++) {
+    scene.remove(HullList[i])
   }
-  HullMeshList = []
+  HullList = []
   atomList = []
   currentAtomList = createLattice(LatticeList.indexOf(currentLattice))
 
@@ -218,17 +233,27 @@ CheckLattice.addEventListener('click', function () {
   else lbl.innerHTML = "<span style='color: red;'>InCorrect</span>"
 })
 
-document.addEventListener('mouseup', function (event) {
-  if (drag == false) {
-    // if the action is add atom
-    if (action == 'selectAtom') {
-      INTERSECTED = CheckHover(mouse, camera, atomList, INTERSECTED)
-      if (INTERSECTED) {
-        SelectAtomList.push(INTERSECTED)
-      }
-    }
+const Slider = document.getElementById('radiiSlider')
+const sliderval = document.getElementById('radiisliderval')
+sliderval.innerHTML = Slider.valueAsNumber
+var currentradii = Slider.valueAsNumber
+
+Slider.oninput = function () {
+  currentradii = Slider.valueAsNumber
+  sliderval.innerHTML = Slider.valueAsNumber
+  var newatomlist = []
+
+  for (let i = 0; i < atomList.length; i++) {
+    var pos = atomList[i].position
+    let atom = addSphereAtCoordinate(pos, 'Y')
+    scene.remove(atomList[i])
+    scene.add(atom)
+    newatomlist.push(atom)
   }
-})
+  atomList = newatomlist
+  SelectAtomList = []
+}
+
 // make the window responsive
 window.addEventListener('resize', () => {
   renderer.setSize(container.offsetWidth, container.offsetHeight)
@@ -236,10 +261,56 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix()
 })
 
+document.addEventListener('mouseup', function (event) {
+  if (drag == false) {
+    // if the action is add atom
+    if (action == 'addAtom') {
+      var newSphere = addSphere(mouse, atomtype, camera, scene)
+      scene.add(newSphere)
+      atomList.push(newSphere)
+    } else if (action == 'selectAtom') {
+      INTERSECTED = CheckHover(mouse, camera, atomList, INTERSECTED)
+      if (INTERSECTED) {
+        if (SelectAtomList.includes(INTERSECTED)) {
+          var indexofatom = SelectAtomList.indexOf(INTERSECTED)
+          SelectAtomList.splice(indexofatom, 1)
+        } else {
+          SelectAtomList.push(INTERSECTED)
+        }
+      }
+    } else if (action == 'selectAll') {
+      SelectAtomList = []
+      for (let i = 0; i < atomList.length; i++) {
+        SelectAtomList.push(atomList[i])
+      }
+    }
+  }
+})
+//delete atom
+document.addEventListener('keydown', function (event) {
+  var keyCode = event.key
+  if (keyCode == 'd') {
+    // DeleteObject(mouse, camera, scene, atomList, SelectAtomList, INTERSECTED)
+    INTERSECTED = CheckHover(mouse, camera, atomList)
+    if (INTERSECTED) {
+      var index = atomList.indexOf(INTERSECTED)
+      if (index > -1) {
+        atomList.splice(index, 1)
+      }
+      var index = SelectAtomList.indexOf(INTERSECTED)
+      if (index > -1) {
+        SelectAtomList.splice(index, 1)
+      }
+      scene.remove(INTERSECTED)
+    }
+  }
+})
+
 // render the scene and animate
 var render = function () {
   highlightSelectList(SelectAtomList, atomList)
   // updateButtonCSS(action);
+  console.log(SelectAtomList)
   INTERSECTED = CheckHover(mouse, camera, atomList, INTERSECTED)
   requestAnimationFrame(render)
   controls.update()
