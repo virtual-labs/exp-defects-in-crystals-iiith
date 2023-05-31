@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.5-b/css/style.min.css"
+        />
+        <link rel="stylesheet" href="./css/main.css" />
+    </head>
+
+    <body class="page" style="margin: 1rem">
+        <section class="columns is-centered is-flex column">
+            <div class="v-collapsible-instruction-container">
+                <div class="v-collapsible">Instructions</div>
+                <div id="procedure-message" class="v-content">
+                    <li class="instr-font">
+                        The experiment aims to visualize and verify the reciprocal lattice for a
+                        given lattice
+                    </li>
+                    <li class="instr-font">
+                        'Select Atoms' button can be used to select the atoms that represent the
+                        reciprocal lattice for the given lattice
+                    </li>
+                    <li class="instr-font">
+                        'select Region' button can be used to visualize the convex polygon which
+                        encapsulates the selected atoms.
+                    </li>
+                    <li class="instr-font">
+                        'Check reciprocal lattice ' button can be used to verify if the chosen
+                        points form the reciprocal lattice or not.
+                    </li>
+                    <li class="instr-font">
+                        The results will be displayed in the observations section on the right.
+                    </li>
+                </div>
+            </div>
+        </section>
+
+        <main
+            class="columns is-centered is-variable is-1-mobile is-flex is-flex-wrap-wrap workspace"
+        >
+            <aside id="left" class="column is-2-desktop is-5-tablet is-5-mobile apparatus">
+                <div class="v-datalist-container">
+                    <div class="v-datalist-row">
+                        <div class="v-datalist-title" id="disp-heading">Navigate Lattices</div>
+                        <!-- <button
+                            id="prev-btn"
+                            style="margin: 0.25rem"
+                            class="v-button is-small is-responsive is-info"
+                        >
+                            <
+                        </button> -->
+                        <!-- <label id="current-lattice"> Square Lattice </label> -->
+
+                        <select id="LatticeList">
+                            <option value="Rectangular Lattice">Simple Cubic</option>
+                            <option value="Face Centered Cubic">Face Centered Cubic</option>
+                            <option value="Body Centered Cubic">Body Centered Cubic</option>
+                            <option value="Hexagonal Packing">Hexagonal Packing</option>
+                        </select>
+                        <!-- <button
+                            id="next-btn"
+                            style="margin: 0.25rem"
+                            class="v-button is-small is-responsive is-danger"
+                        >
+                            >
+                        </button> -->
+                    </div>
+                    <div class="v-datalist-row" id="top-border">
+                        <div>
+                            <div class="v-datalist-title" id="disp-heading">Toggle Select mode</div>
+                            <label class="switch">
+                                <input type="checkbox" id="ToggleSelect" />
+                                <span class="slider round"> </span>
+                            </label>
+                        </div>
+                        <div>
+                            <div class="v-datalist-title" id="disp-heading">Toggle camera</div>
+                            <label class="switch">
+                                <input type="checkbox" id="ToggleCamera" />
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="v-datalist-row" id="top-border">
+                        <div class="v-datalist-title" id="disp-heading">
+                            Change radius of atoms using slider
+                        </div>
+
+                        <div class="slidecontainer">
+                            <input
+                                type="range"
+                                min="0.1"
+                                max="10"
+                                value="0.4"
+                                step="0.1"
+                                class="radiislider"
+                                id="radiiSlider"
+                            />
+                            <p>Value: <span id="radiisliderval"></span></p>
+                        </div>
+                    </div>
+                    <div class="v-datalist-row" id="top-border">
+                        <div class="v-datalist-title" id="disp-heading">
+                            Select the Lattice atoms
+                        </div>
+
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="SelectRegion"
+                            type="submit"
+                            value="Select Region"
+                        />
+                        <br />
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="ClearSelection"
+                            type="submit"
+                            value="CLEAR SELECTIONS"
+                        />
+                    </div>
+                    <div class="v-datalist-row" id="top-border">
+                        <div class="v-datalist-title" id="disp-heading">Check Selected Lattice</div>
+                        <input
+                            class="button is-responsive is-small is-link"
+                            style="margin: 0.5rem"
+                            id="CheckLattice"
+                            type="submit"
+                            value="Check Reciprocal Lattice"
+                        />
+                        <br />
+                    </div>
+                </div>
+            </aside>
+
+            <aside id="center" class="column is-6-desktop is-8-tablet is-8-mobile apparatus">
+                <div class="v-canvas-container" id="canvas-main"></div>
+            </aside>
+            <aside id="right" class="column is-2-desktop is-5-tablet is-5-mobile apparatus">
+                <div class="v-datalist-container">
+                    <div class="v-datalist-title">Observations</div>
+                    <div class="v-datalist-row" id="top-border"></div>
+                    <label class="v-datalist-title" id="lattice-result"></label>
+                </div>
+            </aside>
+        </main>
+        <script type="module" src="js/three.js"></script>
+        <script type="module" src="js/orbit.js"></script>
+        <script type="module" src="js/main.js"></script>
+        <script type="module" src="js/convex.js"></script>
+        <script type="module" src="js/hull.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+    <script src="../assets/js/iframeResize.js"></script></body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is a Reciprocal lattice?",
+      "answers": {
+        "a": "Inverted arrangement of atoms in a crystal",
+        "b": "A lattice that follows the reciprocal Bravais rules",
+        "c": "A repeating pattern of arrangement of atoms with all points being equivalent",
+        "d": "An arrangement of atoms in a different space i.e, not the real space"
+      },
+      "explanations": {
+        "c": "This is the correct definition of a Bravais lattice not reciprocal lattice"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which of these is the formal definition of a reciprocal lattice?",
+      "answers": {
+        "a": "The inverse lattice of a Bravais lattice",
+        "b": "The fourier transform of a Bravais lattice from the real space to the space of spatial frequencies",
+        "c": "The fourier transform of a Bravais lattice from the real space to another real space",
+        "d": "The fourier transform of a Bravais lattice from the space of spatial frequencies to the real space"
+      },
+      "explanations": {
+        "b": "This is the correct definition"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "Which of these is true?",
+      "answers": {
+        "a": "The reciprocal lattice of a Bravais lattice need not be a Bravais lattice",
+        "b": "Two dimensional lattices cannot have a reciprocal lattice",
+        "c": "The reciprocal lattice of a Bravais lattice is a Bravais lattice",
+        "d": "The derivation of a reciprocal lattice involves usage of no transforms"
+      },
+      "explanations": {
+        "c": "The reciprocal lattice of a Bravais lattice has to necessarily be a Bravais lattice by the definition",
+        "d": "It involves a fourier transform"
+      },
+      "correctAnswer": "c",
+      "difficulty": "intermediate"
+    },
+        {
+      "question": "With regard to reciprocal vectors, which of these options are true?",
+      "answers": {
+        "a": "These vectors are dependent on the primitive vectors of the lattice",
+        "b": "These vectors are independent of the primitive vectors of the lattice",
+        "c": "Bravais lattices can have no reciprocal vectors",
+        "d": "They are vectors that are perpendicular to each other"
+      },
+      "explanations": {
+        "a": "Reciprocal vectors are derived from primitive vectors",
+        "c": "A Bravais lattice must have primitive vectors and hence also must have reciprocal vectors"
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+        {
+      "question": "In case of a standard Bravais lattice, what is the reciprocal of a reciprocal lattice?",
+      "answers": {
+        "a": "An entirely new lattice",
+        "b": "No change",
+        "c": "The original lattice from which the reciprocal was obtained",
+        "d": "Both (b) and (c)"
+      },
+      "explanations": {
+        "c": "When worked out on paper, we can see that the reciprocal of a reciprocal lattice is the original lattice"
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+        {
+      "question": "In the mathematical formula of reciprocal vectors, what is the value of V?",
+      "answers": {
+        "a": "a1.(a2 x a3)",
+        "b": "a2.(a3 x a1)",
+        "c": "a3.(a1 x a2)",
+        "d": "All of the above"
+      },
+      "explanations": {
+        "d": "All the above options equate to the same value which is V"
+      },
+      "correctAnswer": "d",
+      "difficulty": "advanced"
+    }
+  ]
+}

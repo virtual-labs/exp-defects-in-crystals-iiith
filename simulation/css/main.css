@@ -1,0 +1,519 @@
+html,
+body {
+  height: 95vh;
+}
+aside {
+  height: 90vh;
+}
+.page {
+  overflow: hidden;
+}
+
+.smol-font {
+  font-size: x-small;
+}
+
+.v-datalist-container {
+  height: 100%;
+  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.v-canvas-container {
+  width: 100%;
+  height: 100%;
+  min-height: 900px;
+  border: none;
+  padding: 0px;
+  /* position: fixed; */
+  position: static;
+}
+
+.v-slider-full {
+  width: 80%;
+  margin: auto;
+}
+
+.input-form {
+  display: none;
+  color: black;
+}
+
+.add {
+  font-size: 0.9rem;
+}
+
+.left {
+  order: 1;
+}
+
+.exp {
+  order: 2;
+}
+
+.right {
+  order: 3;
+}
+
+@media screen and (max-width: 800px) {
+  .left {
+    order: 1;
+  }
+
+  .right {
+    order: 2;
+  }
+
+  .exp {
+    order: 3;
+  }
+}
+
+#top-border {
+  border-top: 1px solid black;
+  margin: 0.5rem;
+}
+
+.smol-wid {
+  width: 20%;
+  /* margin: 0.1rem; */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 15% auto;
+  /* background-color: rgb(0, 0, 0); */
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+#disp-heading {
+  margin: 0.5rem;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#add-modal {
+  width: 50%;
+  margin: auto;
+}
+
+#edit-modal {
+  width: 50%;
+  margin: auto;
+}
+
+.v-datalist-title {
+  border-bottom: 0;
+}
+
+.v-collapsible-instruction-container {
+  width: 60%;
+  margin: auto;
+  border-radius: 0.25rem;
+}
+
+.v-collapsible {
+  width: 98%;
+  margin: auto;
+}
+
+.v-collapsible::after {
+  size: 1rem;
+}
+
+.v-button {
+  background-color: #04aa6d;
+  border-radius: 0.5rem;
+  font-size: small;
+  margin: 1rem;
+}
+
+.instr-font {
+  font-size: 0.9rem;
+}
+
+.coord-dim {
+  width: 100px;
+  margin: 0.25rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* The slider itself */
+.radiislider {
+  -webkit-appearance: none; /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+}
+
+/* Mouse-over effects */
+.radiislider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.radiislider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.radiislider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #04aa6d; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#LatticeList {
+  background-color: white;
+  padding: 5px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+#add-shape-btn {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+}
+
+#edit-shape-btn {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+
+#delete-shape-btn {
+  background-color: #f14668;
+  border-radius: 0.5rem;
+}
+
+#prev-btn {
+  background-color: #f14668;
+  border-radius: 0.5rem;
+}
+#next-btn {
+  background-color: #f14668;
+  border-radius: 0.5rem;
+}
+
+#move-button {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+
+#AddAtom {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#SelectAtom {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+#SelectRegion {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+#SelectAll {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#ClearSelection {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+#CheckSC {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#CheckLattice {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+  border-radius: 0.5rem;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+#AddAtomByCoordinate {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#AddDummyAtomByCoordinate {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#RepeatSelectedPattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#TranslatePattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#MoveSelectedPattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#set-rotation-axis {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+}
+
+#checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#checkboxes label {
+  margin: 0.3rem auto;
+
+  display: flex;
+  align-items: flex-start;
+  flex: 40%;
+}
+
+#lock-v #xy-grid #xz-grid #yz-grid {
+  margin: auto 0.1rem;
+  padding: auto 0.1rem;
+}
+
+.fields {
+  width: 50%;
+}
+
+.field-div {
+  margin: 1rem;
+}
+
+.v-collapsible-instruction-container {
+  width: 60%;
+  margin: auto;
+  border-radius: 0.25rem;
+}
+
+.v-collapsible {
+  width: 98%;
+  margin: auto;
+}
+
+.v-collapsible::after {
+  size: 1rem;
+}
+
+.v-button {
+  background-color: #04aa6d;
+  border-radius: 0.5rem;
+  font-size: small;
+  margin: 1rem;
+}
+
+.instr-font {
+  font-size: 0.9rem;
+}
+
+.coord-dim {
+  width: 100px;
+  margin: 0.25rem;
+}
+
+#add-shape-btn {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+}
+
+#edit-shape-btn {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+
+#delete-shape-btn {
+  background-color: #f14668;
+  border-radius: 0.5rem;
+}
+
+#move-button {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+
+#AddAtom {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#SelectAtom {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#SelectRegion {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#SelectAll {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#CheckSC {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#AddAtomByCoordinate {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#AddDummyAtomByCoordinate {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#RepeatSelectedPattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#TranslatePattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#MoveSelectedPattern {
+  background-color: #48c774;
+  border-radius: 0.5rem;
+}
+#set-rotation-axis {
+  background-color: #3298dc;
+  border-radius: 0.5rem;
+}
+
+#checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#checkboxes label {
+  margin: 0.3rem auto;
+
+  display: flex;
+  align-items: flex-start;
+  flex: 40%;
+}
+
+#lock-v #xy-grid #xz-grid #yz-grid {
+  margin: auto 0.1rem;
+  padding: auto 0.1rem;
+}
+
+.fields {
+  width: 50%;
+}
+
+.field-div {
+  margin: 1rem;
+}

@@ -1,0 +1,90 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "How many reciprocal vectors does a Bravais lattice of n dimenions have?",
+      "answers": {
+        "a": "1",
+        "b": "n-1",
+        "c": "n",
+        "d": "n/2"
+      },
+      "explanations": {
+        "c": "A Bravais lattice of n dimensions has n reciprocal vectors"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "What is the reciprocal lattice of a lattice X, given X is the reciprocal lattice of Y",
+      "answers": {
+        "a": "Cannot determine from the given data",
+        "b": "A completely new lattice Z",
+        "c": "X",
+        "d": "Y"
+      },
+      "explanations": {
+        "d": "Reciprocal of the reciprocal lattice is the original lattice"
+      },
+      "correctAnswer": "d",
+      "difficulty": "beginner"
+    },
+        {
+      "question": "Why do the rules that apply for primitive vectors also apply for reciprocal vectors?",
+      "answers": {
+        "a": "Because both are sets of vectors of the same lattice",
+        "b": "Because reciprocal vectors are also primitive vectors of the same lattice in a different space",
+        "c": "Because both these vectors that are independent of each other",
+        "d": "None of the above"
+      },
+      "explanations": {
+        "a": "Both the set of vectors being from the same lattice does not justify the cause",
+        "b": "This is true. Fundamentally, reciprocal vectors are also primitive vectors of the same lattice in a different space"
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+        {
+      "question": "The reciprocal vectors of the SCP lattice are identical to the primitive vectors of which of these lattices?",
+      "answers": {
+        "a": "SCP",
+        "b": "FCC",
+        "c": "BCC",
+        "d": "HCP"
+      },
+      "explanations": {
+        "a": "The reciprocal vectors of SCP are indentical to its primitive vectors"
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+        {
+      "question": "The reciprocal vectors of the FCC lattice are identical to the primitive vectors of which of these lattices?",
+      "answers": {
+        "a": "SCP",
+        "b": "FCC",
+        "c": "BCC",
+        "d": "HCP"
+      },
+      "explanations": {
+        "c": "The reciprocal vectors of FCC are identical to the primitive vectors of BCC"
+      },
+      "correctAnswer": "c",
+      "difficulty": "advanced"
+    },
+        {
+      "question": "The reciprocal vectors of the BCC lattice are identical to the primitive vectors of which of these lattices?",
+      "answers": {
+        "a": "SCP",
+        "b": "FCC",
+        "c": "BCC",
+        "d": "HCP"
+      },
+      "explanations": {
+        "b": "The reciprocal vectors of BCC are identical to the primitive vectors of FCC"
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    }
+  ]
+}
