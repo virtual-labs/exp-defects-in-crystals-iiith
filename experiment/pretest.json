@@ -19,9 +19,9 @@
       "question": "Which of these is the formal definition of a reciprocal lattice?",
       "answers": {
         "a": "The inverse lattice of a Bravais lattice",
-        "b": "The fourier transform of a Bravais lattice from the real space to the space of spatial frequencies",
-        "c": "The fourier transform of a Bravais lattice from the real space to another real space",
-        "d": "The fourier transform of a Bravais lattice from the space of spatial frequencies to the real space"
+        "b": "The Fourier transform of a Bravais lattice from the real space to the space of spatial frequencies",
+        "c": "The Fourier transform of a Bravais lattice from the real space to another real space",
+        "d": "The Fourier transform of a Bravais lattice from the space of spatial frequencies to the real space"
       },
       "explanations": {
         "b": "This is the correct definition"
@@ -39,7 +39,7 @@
       },
       "explanations": {
         "c": "The reciprocal lattice of a Bravais lattice has to necessarily be a Bravais lattice by the definition",
-        "d": "It involves a fourier transform"
+        "d": "It involves a Fourier transform"
       },
       "correctAnswer": "c",
       "difficulty": "intermediate"
